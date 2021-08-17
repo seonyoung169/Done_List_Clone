@@ -19,8 +19,18 @@ class ReportVC : UIViewController {
     var period = UILabel()
     
     var graphArea = UIView()
+    var weekAverageArea = UIView()
+    var weekAverage = UILabel()
+    var weekAverageCount = UILabel()
+    
+    var weekTotalArea = UIView()
+    var weekTotal = UILabel()
+    var weekTotalCount = UILabel()
+    
+    var graphStackView = UIStackView()
     
     var statisticsArea = UIView()
+    var dayComponents = [DayRecord(), DayRecord(), DayRecord(), DayRecord(), DayRecord(), DayRecord(), DayRecord()]
     
     var dayClock = UIImageView()
     var day = UILabel()
@@ -57,6 +67,28 @@ class ReportVC : UIViewController {
         
         graphArea.backgroundColor = .white
         graphArea.layer.cornerRadius = 20
+    
+        weekAverage.text = "주간 평균"
+        weekAverage.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
+        weekAverage.textAlignment = .center
+        weekAverageCount.text = "1.0개"
+        weekAverageCount.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 27)
+        weekAverageCount.textAlignment = .center
+        
+        weekTotal.text = "주간 총합"
+        weekTotal.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
+        weekTotal.textAlignment = .center
+        weekTotalCount.text = "1개"
+        weekTotalCount.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 27)
+        weekTotalCount.textAlignment = .center
+        
+        for comp in dayComponents {
+            graphStackView.addArrangedSubview(comp)
+        }
+        graphStackView.spacing = 2
+        graphStackView.axis = .horizontal
+        graphStackView.distribution = .fillEqually
+        
         
         dayClock.backgroundColor = .orange
         day.text = "기록 일수"
@@ -93,6 +125,15 @@ class ReportVC : UIViewController {
         weekControlArea.addSubview(period)
         
         self.view.addSubview(graphArea)
+        graphArea.addSubview(weekAverageArea)
+        weekAverageArea.addSubview(weekAverage)
+        weekAverageArea.addSubview(weekAverageCount)
+        
+        graphArea.addSubview(weekTotalArea)
+        weekTotalArea.addSubview(weekTotal)
+        weekTotalArea.addSubview(weekTotalCount)
+        
+        graphArea.addSubview(graphStackView)
         
         self.view.addSubview(statisticsArea)
         statisticsArea.addSubview(dayClock)
@@ -116,6 +157,13 @@ class ReportVC : UIViewController {
         afterArrow.translatesAutoresizingMaskIntoConstraints = false
         
         graphArea.translatesAutoresizingMaskIntoConstraints = false
+        weekAverageArea.translatesAutoresizingMaskIntoConstraints = false
+        weekAverage.translatesAutoresizingMaskIntoConstraints = false
+        weekAverageCount.translatesAutoresizingMaskIntoConstraints = false
+        weekTotalArea.translatesAutoresizingMaskIntoConstraints = false
+        weekTotal.translatesAutoresizingMaskIntoConstraints = false
+        weekTotalCount.translatesAutoresizingMaskIntoConstraints = false
+        graphStackView.translatesAutoresizingMaskIntoConstraints = false
         
         statisticsArea.translatesAutoresizingMaskIntoConstraints = false
         dayClock.translatesAutoresizingMaskIntoConstraints = false
@@ -164,6 +212,33 @@ class ReportVC : UIViewController {
             graphArea.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
             graphArea.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             graphArea.heightAnchor.constraint(equalToConstant: 350),
+            
+            weekAverageArea.topAnchor.constraint(equalTo: graphArea.topAnchor, constant: 20),
+            weekAverageArea.leadingAnchor.constraint(equalTo: graphArea.leadingAnchor),
+            weekAverageArea.widthAnchor.constraint(equalToConstant: (self.view.frame.width - 30)/2),
+            weekAverageArea.heightAnchor.constraint(equalToConstant: 70),
+            
+            weekAverage.centerXAnchor.constraint(equalTo: weekAverageArea.centerXAnchor),
+            weekAverage.topAnchor.constraint(equalTo: weekAverageArea.topAnchor),
+            
+            weekAverageCount.centerXAnchor.constraint(equalTo: weekAverage.centerXAnchor),
+            weekAverageCount.topAnchor.constraint(equalTo: weekAverage.bottomAnchor, constant: 5),
+            
+            weekTotalArea.topAnchor.constraint(equalTo: graphArea.topAnchor, constant: 20),
+            weekTotalArea.trailingAnchor.constraint(equalTo: graphArea.trailingAnchor),
+            weekTotalArea.widthAnchor.constraint(equalToConstant: (self.view.frame.width - 30)/2),
+            weekTotalArea.heightAnchor.constraint(equalToConstant: 70),
+            
+            weekTotal.centerXAnchor.constraint(equalTo: weekTotalArea.centerXAnchor),
+            weekTotal.topAnchor.constraint(equalTo: weekTotalArea.topAnchor),
+            
+            weekTotalCount.centerXAnchor.constraint(equalTo: weekTotal.centerXAnchor),
+            weekTotalCount.topAnchor.constraint(equalTo: weekTotal.bottomAnchor, constant: 5),
+            
+            graphStackView.topAnchor.constraint(equalTo: weekTotalArea.bottomAnchor),
+            graphStackView.leadingAnchor.constraint(equalTo: graphArea.leadingAnchor),
+            graphStackView.trailingAnchor.constraint(equalTo: graphArea.trailingAnchor),
+            graphStackView.bottomAnchor.constraint(equalTo: graphArea.bottomAnchor),
             
             statisticsArea.topAnchor.constraint(equalTo: graphArea.bottomAnchor, constant: 30),
             statisticsArea.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 50),
