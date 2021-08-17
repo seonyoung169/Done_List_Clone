@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A97E852126CA4E0D003F5F79 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E852026CA4E0D003F5F79 /* Report.swift */; };
 		A9B01FC126C526C300A9982A /* AppleSDGothicNeoH.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B01FBC26C526C300A9982A /* AppleSDGothicNeoH.ttf */; };
 		A9B01FC226C526C300A9982A /* AppleSDGothicNeoH.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B01FBC26C526C300A9982A /* AppleSDGothicNeoH.ttf */; };
 		A9B01FC326C526C300A9982A /* AppleSDGothicNeoH.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B01FBC26C526C300A9982A /* AppleSDGothicNeoH.ttf */; };
@@ -33,6 +34,7 @@
 		A9E27F2526C144D4003548F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E27F2326C144D4003548F8 /* LaunchScreen.storyboard */; };
 		A9E27F3026C144D4003548F8 /* DoneList_CloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E27F2F26C144D4003548F8 /* DoneList_CloneTests.swift */; };
 		A9E27F3B26C144D4003548F8 /* DoneList_CloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E27F3A26C144D4003548F8 /* DoneList_CloneUITests.swift */; };
+		A9F580E926CB95B300307A43 /* DayRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F580E826CB95B200307A43 /* DayRecord.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A97E852026CA4E0D003F5F79 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		A9B01FBC26C526C300A9982A /* AppleSDGothicNeoH.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoH.ttf; path = "../../../../Downloads/Apple+산돌고딕+Neo/AppleSDGothicNeoH.ttf"; sourceTree = "<group>"; };
 		A9B01FBD26C526C300A9982A /* AppleSDGothicNeoEB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoEB.ttf; path = "../../../../Downloads/Apple+산돌고딕+Neo/AppleSDGothicNeoEB.ttf"; sourceTree = "<group>"; };
 		A9B01FBE26C526C300A9982A /* AppleSDGothicNeoB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoB.ttf; path = "../../../../Downloads/Apple+산돌고딕+Neo/AppleSDGothicNeoB.ttf"; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 		A9E27F3626C144D4003548F8 /* DoneList_CloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoneList_CloneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9E27F3A26C144D4003548F8 /* DoneList_CloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneList_CloneUITests.swift; sourceTree = "<group>"; };
 		A9E27F3C26C144D4003548F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9F580E826CB95B200307A43 /* DayRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRecord.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A97E851F26CA4DEE003F5F79 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				A9E27F1C26C144D2003548F8 /* Home.swift */,
+				A97E852026CA4E0D003F5F79 /* Report.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		A9B01FBB26C5256B00A9982A /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,15 +156,16 @@
 		A9E27F1726C144D2003548F8 /* DoneList_Clone */ = {
 			isa = PBXGroup;
 			children = (
+				A97E851F26CA4DEE003F5F79 /* Scene */,
 				A9B01FD026C52AA800A9982A /* Extensions */,
 				A9B01FBB26C5256B00A9982A /* Font */,
 				A9E27F1826C144D2003548F8 /* AppDelegate.swift */,
 				A9E27F1A26C144D2003548F8 /* SceneDelegate.swift */,
-				A9E27F1C26C144D2003548F8 /* Home.swift */,
 				A9E27F1E26C144D2003548F8 /* Main.storyboard */,
 				A9E27F2126C144D4003548F8 /* Assets.xcassets */,
 				A9E27F2326C144D4003548F8 /* LaunchScreen.storyboard */,
 				A9E27F2626C144D4003548F8 /* Info.plist */,
+				A9F580E826CB95B200307A43 /* DayRecord.swift */,
 			);
 			path = DoneList_Clone;
 			sourceTree = "<group>";
@@ -320,6 +334,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9B01FD226C52AC200A9982A /* UIFont.swift in Sources */,
+				A9F580E926CB95B300307A43 /* DayRecord.swift in Sources */,
+				A97E852126CA4E0D003F5F79 /* Report.swift in Sources */,
 				A9E27F1D26C144D2003548F8 /* Home.swift in Sources */,
 				A9E27F1926C144D2003548F8 /* AppDelegate.swift in Sources */,
 				A9E27F1B26C144D2003548F8 /* SceneDelegate.swift in Sources */,
