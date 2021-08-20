@@ -65,6 +65,11 @@ class AddDoneVC: UIViewController {
         
         addNewDoneButton.backgroundColor = .white
         addNewDoneButton.layer.cornerRadius = 10
+        addNewDoneButton.layer.shadowOpacity = 0.1
+        addNewDoneButton.layer.shadowColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+        addNewDoneButton.layer.shadowRadius = 10
+        addNewDoneButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        addNewDoneButton.layer.masksToBounds = false
         
         plusBox.backgroundColor = .gray
         
