@@ -52,6 +52,69 @@ class ReportVC : UIViewController {
     
     func configure() -> Void {
         
+        self.view.addSubview(navigationBarArea)
+        navigationBarArea.addSubview(backButton)
+        navigationBarArea.addSubview(report)
+        
+        self.view.addSubview(weekControlArea)
+        weekControlArea.addSubview(beforeArrow)
+        weekControlArea.addSubview(afterArrow)
+        weekControlArea.addSubview(period)
+        
+        self.view.addSubview(graphArea)
+        graphArea.addSubview(weekAverageArea)
+        weekAverageArea.addSubview(weekAverage)
+        weekAverageArea.addSubview(weekAverageCount)
+        
+        graphArea.addSubview(weekTotalArea)
+        weekTotalArea.addSubview(weekTotal)
+        weekTotalArea.addSubview(weekTotalCount)
+        
+        graphArea.addSubview(graphStackView)
+        
+        self.view.addSubview(statisticsArea)
+        statisticsArea.addSubview(dayClock)
+        statisticsArea.addSubview(day)
+        statisticsArea.addSubview(dayCount)
+        statisticsArea.addSubview(totalClock)
+        statisticsArea.addSubview(total)
+        statisticsArea.addSubview(totalCount)
+        statisticsArea.addSubview(averageClock)
+        statisticsArea.addSubview(average)
+        statisticsArea.addSubview(averageCount)
+        
+        
+        navigationBarArea.translatesAutoresizingMaskIntoConstraints = false
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        report.translatesAutoresizingMaskIntoConstraints = false
+        
+        weekControlArea.translatesAutoresizingMaskIntoConstraints = false
+        beforeArrow.translatesAutoresizingMaskIntoConstraints = false
+        period.translatesAutoresizingMaskIntoConstraints = false
+        afterArrow.translatesAutoresizingMaskIntoConstraints = false
+        
+        graphArea.translatesAutoresizingMaskIntoConstraints = false
+        weekAverageArea.translatesAutoresizingMaskIntoConstraints = false
+        weekAverage.translatesAutoresizingMaskIntoConstraints = false
+        weekAverageCount.translatesAutoresizingMaskIntoConstraints = false
+        weekTotalArea.translatesAutoresizingMaskIntoConstraints = false
+        weekTotal.translatesAutoresizingMaskIntoConstraints = false
+        weekTotalCount.translatesAutoresizingMaskIntoConstraints = false
+        graphStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        statisticsArea.translatesAutoresizingMaskIntoConstraints = false
+        dayClock.translatesAutoresizingMaskIntoConstraints = false
+        day.translatesAutoresizingMaskIntoConstraints = false
+        dayCount.translatesAutoresizingMaskIntoConstraints = false
+        totalClock.translatesAutoresizingMaskIntoConstraints = false
+        total.translatesAutoresizingMaskIntoConstraints = false
+        totalCount.translatesAutoresizingMaskIntoConstraints = false
+        averageClock.translatesAutoresizingMaskIntoConstraints = false
+        average.translatesAutoresizingMaskIntoConstraints = false
+        averageCount.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        
         navigationBarArea.backgroundColor = .clear
         backButton.backgroundColor = .blue
         report.text = "리포트"
@@ -113,68 +176,6 @@ class ReportVC : UIViewController {
         averageCount.text = "1.5 개"
         averageCount.textAlignment = .right
         averageCount.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
-        
-        
-        self.view.addSubview(navigationBarArea)
-        navigationBarArea.addSubview(backButton)
-        navigationBarArea.addSubview(report)
-        
-        self.view.addSubview(weekControlArea)
-        weekControlArea.addSubview(beforeArrow)
-        weekControlArea.addSubview(afterArrow)
-        weekControlArea.addSubview(period)
-        
-        self.view.addSubview(graphArea)
-        graphArea.addSubview(weekAverageArea)
-        weekAverageArea.addSubview(weekAverage)
-        weekAverageArea.addSubview(weekAverageCount)
-        
-        graphArea.addSubview(weekTotalArea)
-        weekTotalArea.addSubview(weekTotal)
-        weekTotalArea.addSubview(weekTotalCount)
-        
-        graphArea.addSubview(graphStackView)
-        
-        self.view.addSubview(statisticsArea)
-        statisticsArea.addSubview(dayClock)
-        statisticsArea.addSubview(day)
-        statisticsArea.addSubview(dayCount)
-        statisticsArea.addSubview(totalClock)
-        statisticsArea.addSubview(total)
-        statisticsArea.addSubview(totalCount)
-        statisticsArea.addSubview(averageClock)
-        statisticsArea.addSubview(average)
-        statisticsArea.addSubview(averageCount)
-        
-        
-        navigationBarArea.translatesAutoresizingMaskIntoConstraints = false
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        report.translatesAutoresizingMaskIntoConstraints = false
-        
-        weekControlArea.translatesAutoresizingMaskIntoConstraints = false
-        beforeArrow.translatesAutoresizingMaskIntoConstraints = false
-        period.translatesAutoresizingMaskIntoConstraints = false
-        afterArrow.translatesAutoresizingMaskIntoConstraints = false
-        
-        graphArea.translatesAutoresizingMaskIntoConstraints = false
-        weekAverageArea.translatesAutoresizingMaskIntoConstraints = false
-        weekAverage.translatesAutoresizingMaskIntoConstraints = false
-        weekAverageCount.translatesAutoresizingMaskIntoConstraints = false
-        weekTotalArea.translatesAutoresizingMaskIntoConstraints = false
-        weekTotal.translatesAutoresizingMaskIntoConstraints = false
-        weekTotalCount.translatesAutoresizingMaskIntoConstraints = false
-        graphStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        statisticsArea.translatesAutoresizingMaskIntoConstraints = false
-        dayClock.translatesAutoresizingMaskIntoConstraints = false
-        day.translatesAutoresizingMaskIntoConstraints = false
-        dayCount.translatesAutoresizingMaskIntoConstraints = false
-        totalClock.translatesAutoresizingMaskIntoConstraints = false
-        total.translatesAutoresizingMaskIntoConstraints = false
-        totalCount.translatesAutoresizingMaskIntoConstraints = false
-        averageClock.translatesAutoresizingMaskIntoConstraints = false
-        average.translatesAutoresizingMaskIntoConstraints = false
-        averageCount.translatesAutoresizingMaskIntoConstraints = false
         
         
         NSLayoutConstraint.activate([
