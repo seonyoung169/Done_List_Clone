@@ -18,9 +18,16 @@ class AddDoneVC: UIViewController {
     var addNewDone = UILabel()
     
     var recentDone = UILabel()
+    
+    var recentDoneTableView = UITableView()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        recentDoneTableView.delegate = self
+        recentDoneTableView.dataSource = self
+        recentDoneTableView.register(RecentDoneCell.self, forCellReuseIdentifier: RecentDoneCell.cellID)
         configure()
     }
     
@@ -35,6 +42,8 @@ class AddDoneVC: UIViewController {
         
         self.view.addSubview(recentDone)
         
+        self.view.addSubview(recentDoneTableView)
+        
         navigationBarArea.translatesAutoresizingMaskIntoConstraints = false
         backButton.translatesAutoresizingMaskIntoConstraints = false
         chooseDone.translatesAutoresizingMaskIntoConstraints = false
@@ -44,6 +53,8 @@ class AddDoneVC: UIViewController {
         addNewDone.translatesAutoresizingMaskIntoConstraints = false
         
         recentDone.translatesAutoresizingMaskIntoConstraints = false
+        
+        recentDoneTableView.translatesAutoresizingMaskIntoConstraints = false
         
         navigationBarArea.backgroundColor = .clear
         backButton.backgroundColor = .blue
@@ -65,6 +76,10 @@ class AddDoneVC: UIViewController {
         recentDone.font = UIFont(name: "AppleSDGothicNeo-Light", size: 15)
         recentDone.textAlignment = .left
         recentDone.textColor = .white
+        
+        recentDoneTableView.separatorStyle = .none
+        recentDoneTableView.layer.cornerRadius = 10
+        recentDoneTableView.backgroundColor = .clear
         
         NSLayoutConstraint.activate([
             navigationBarArea.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -94,9 +109,31 @@ class AddDoneVC: UIViewController {
             addNewDone.leadingAnchor.constraint(equalTo: plusBox.trailingAnchor, constant: 20),
             
             recentDone.topAnchor.constraint(equalTo: addNewDoneButton.bottomAnchor, constant: 50),
-            recentDone.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15)
+            recentDone.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            
+            recentDoneTableView.topAnchor.constraint(equalTo: recentDone.bottomAnchor, constant: 20),
+            recentDoneTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            recentDoneTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            recentDoneTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20)
         ])
         
     }
 
+}
+
+extension AddDoneVC : UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: RecentDoneCell.cellID) as! RecentDoneCell
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
+    }
+    
 }
