@@ -2,66 +2,55 @@
 //  AddDoneVC.swift
 //  DoneList_Clone
 //
-//  Created by SEONYOUNG LEE on 2021/08/17.
+//  Created by SEONYOUNG LEE on 2021/08/21.
 //
 
 import UIKit
 
 class AddDoneVC: UIViewController {
-    
     var navigationBarArea : UIView = UIView()
     var backButton = UIImageView()
-    var chooseDone = UILabel()
+    var addDone = UILabel()
+    var confirmButton = UIImageView()
     
     var addNewDoneButton = UIView()
     var plusBox = UIImageView()
-    var addNewDone = UILabel()
+    var doneTextField = UITextField()
     
-    var recentDone = UILabel()
+    var iconArea = UIView()
     
-    var recentDoneTableView = UITableView()
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recentDoneTableView.delegate = self
-        recentDoneTableView.dataSource = self
-        recentDoneTableView.register(RecentDoneCell.self, forCellReuseIdentifier: RecentDoneCell.cellID)
-        configure()
-    }
-    
-    func configure() -> Void {
         self.view.addSubview(navigationBarArea)
         navigationBarArea.addSubview(backButton)
-        navigationBarArea.addSubview(chooseDone)
+        navigationBarArea.addSubview(addDone)
+        navigationBarArea.addSubview(confirmButton)
         
         self.view.addSubview(addNewDoneButton)
         addNewDoneButton.addSubview(plusBox)
-        addNewDoneButton.addSubview(addNewDone)
+        addNewDoneButton.addSubview(doneTextField)
         
-        self.view.addSubview(recentDone)
-        
-        self.view.addSubview(recentDoneTableView)
+        self.view.addSubview(iconArea)
         
         navigationBarArea.translatesAutoresizingMaskIntoConstraints = false
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        chooseDone.translatesAutoresizingMaskIntoConstraints = false
+        addDone.translatesAutoresizingMaskIntoConstraints = false
+        confirmButton.translatesAutoresizingMaskIntoConstraints = false
         
         addNewDoneButton.translatesAutoresizingMaskIntoConstraints = false
         plusBox.translatesAutoresizingMaskIntoConstraints = false
-        addNewDone.translatesAutoresizingMaskIntoConstraints = false
+        doneTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        recentDone.translatesAutoresizingMaskIntoConstraints = false
-        
-        recentDoneTableView.translatesAutoresizingMaskIntoConstraints = false
+        iconArea.translatesAutoresizingMaskIntoConstraints = false
         
         navigationBarArea.backgroundColor = .clear
         backButton.backgroundColor = .blue
-        chooseDone.text = "한 일 선택하기"
-        chooseDone.textColor = .white
-        chooseDone.font = UIFont(name: "AppleSDGothicNeo-Semibold", size: 20)
-        chooseDone.textAlignment = .center
+        addDone.text = "한 일 추가하기"
+        addDone.textColor = .black
+        addDone.font = UIFont(name: "AppleSDGothicNeo-Semibold", size: 20)
+        addDone.textAlignment = .center
+        confirmButton.backgroundColor = .green
         
         addNewDoneButton.backgroundColor = .white
         addNewDoneButton.layer.cornerRadius = 10
@@ -73,18 +62,14 @@ class AddDoneVC: UIViewController {
         
         plusBox.backgroundColor = .gray
         
-        addNewDone.text = "새로운 한 일 추가하기"
-        addNewDone.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
-        addNewDone.textAlignment = .left
+        doneTextField.placeholder = "오늘은 어떤 일을 하셨나요?"
+        doneTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
+        doneTextField.textAlignment = .left
+        doneTextField.becomeFirstResponder()
         
-        recentDone.text = "최근 한 일"
-        recentDone.font = UIFont(name: "AppleSDGothicNeo-Light", size: 15)
-        recentDone.textAlignment = .left
-        recentDone.textColor = .white
         
-        recentDoneTableView.separatorStyle = .none
-        recentDoneTableView.layer.cornerRadius = 10
-        recentDoneTableView.backgroundColor = .clear
+        iconArea.backgroundColor = .white
+        iconArea.layer.cornerRadius = 10
         
         NSLayoutConstraint.activate([
             navigationBarArea.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -97,8 +82,13 @@ class AddDoneVC: UIViewController {
             backButton.widthAnchor.constraint(equalToConstant: 40),
             backButton.heightAnchor.constraint(equalToConstant: 40),
             
-            chooseDone.centerXAnchor.constraint(equalTo: navigationBarArea.centerXAnchor),
-            chooseDone.centerYAnchor.constraint(equalTo: navigationBarArea.centerYAnchor),
+            addDone.centerXAnchor.constraint(equalTo: navigationBarArea.centerXAnchor),
+            addDone.centerYAnchor.constraint(equalTo: navigationBarArea.centerYAnchor),
+            
+            confirmButton.centerYAnchor.constraint(equalTo: navigationBarArea.centerYAnchor),
+            confirmButton.trailingAnchor.constraint(equalTo: navigationBarArea.trailingAnchor, constant: -10),
+            confirmButton.widthAnchor.constraint(equalToConstant: 40),
+            confirmButton.heightAnchor.constraint(equalToConstant: 40),
             
             addNewDoneButton.topAnchor.constraint(equalTo: navigationBarArea.bottomAnchor, constant: 20),
             addNewDoneButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
@@ -110,35 +100,32 @@ class AddDoneVC: UIViewController {
             plusBox.heightAnchor.constraint(equalToConstant: 35),
             plusBox.leadingAnchor.constraint(equalTo: addNewDoneButton.leadingAnchor, constant: 20),
             
-            addNewDone.centerYAnchor.constraint(equalTo: addNewDoneButton.centerYAnchor),
-            addNewDone.leadingAnchor.constraint(equalTo: plusBox.trailingAnchor, constant: 20),
+            doneTextField.centerYAnchor.constraint(equalTo: addNewDoneButton.centerYAnchor),
+            doneTextField.leadingAnchor.constraint(equalTo: plusBox.trailingAnchor, constant: 20),
             
-            recentDone.topAnchor.constraint(equalTo: addNewDoneButton.bottomAnchor, constant: 50),
-            recentDone.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            
-            recentDoneTableView.topAnchor.constraint(equalTo: recentDone.bottomAnchor, constant: 20),
-            recentDoneTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            recentDoneTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
-            recentDoneTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20)
+            iconArea.topAnchor.constraint(equalTo: addNewDoneButton.bottomAnchor, constant: 10),
+            iconArea.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            iconArea.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            iconArea.heightAnchor.constraint(equalToConstant: 180)
         ])
         
-    }
-
-}
-
-extension AddDoneVC : UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RecentDoneCell.cellID) as! RecentDoneCell
+        for i in 0...3 {
+            let stackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.distribution = .fillEqually
+            stackView.spacing = 7
+            
+            for _ in 0...6{
+                let iconImageView = UIImageView()
+                iconImageView.backgroundColor = .lightGray
+                stackView.addArrangedSubview(iconImageView)
+            }
         
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 65
+            iconArea.addSubview(stackView)
+            stackView.frame = CGRect(x: 7, y: 7 + 45 * i, width: Int(self.view.frame.width - 30.0 - 14.0), height: 180/4 - 14)
+        }
+        
+        
     }
     
 }
