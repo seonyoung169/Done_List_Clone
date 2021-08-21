@@ -70,6 +70,8 @@ class SelectDoneVC: UIViewController {
         addNewDoneButton.layer.shadowRadius = 10
         addNewDoneButton.layer.shadowOffset = CGSize(width: 0, height: 1)
         addNewDoneButton.layer.masksToBounds = false
+        addNewDoneButton.isUserInteractionEnabled = true
+        addNewDoneButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goAddDone)))
         
         plusBox.backgroundColor = .gray
         
@@ -122,6 +124,11 @@ class SelectDoneVC: UIViewController {
             recentDoneTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20)
         ])
         
+    }
+    
+    @objc func goAddDone() {
+        guard let vc = self.storyboard?.instantiateViewController(identifier: "AddDoneVC") else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

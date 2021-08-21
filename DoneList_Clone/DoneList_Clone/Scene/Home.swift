@@ -47,6 +47,8 @@ class HomeVC: UIViewController {
         addDondButton.layer.shadowRadius = 10
         addDondButton.layer.shadowOffset = CGSize(width: 0, height: 10)
         addDondButton.layer.masksToBounds = false
+        addDondButton.isUserInteractionEnabled = true
+        addDondButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goSelctDone)))
         
         configure()
         
@@ -114,5 +116,14 @@ class HomeVC: UIViewController {
     }
     
 
+    @objc func goSelctDone() {
+        print("goSelectDone")
+        guard let vc = self.storyboard?.instantiateViewController(identifier: "SelectDoneVC") else { return }
+        print("select done vc = \(vc)")
+        print("navi : \(self.navigationController)")
+        
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

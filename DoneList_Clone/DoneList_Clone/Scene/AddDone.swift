@@ -11,34 +11,36 @@ class AddDoneVC: UIViewController {
     var navigationBarArea : UIView = UIView()
     var backButton = UIImageView()
     var addDone = UILabel()
+    var confirmButton = UIImageView()
     
     var addNewDoneButton = UIView()
     var plusBox = UIImageView()
-    var addNewDone = UILabel()
+    var doneTextField = UITextField()
     
     var iconArea = UIView()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.addSubview(navigationBarArea)
         navigationBarArea.addSubview(backButton)
         navigationBarArea.addSubview(addDone)
+        navigationBarArea.addSubview(confirmButton)
         
         self.view.addSubview(addNewDoneButton)
         addNewDoneButton.addSubview(plusBox)
-        addNewDoneButton.addSubview(addNewDone)
+        addNewDoneButton.addSubview(doneTextField)
         
         self.view.addSubview(iconArea)
         
         navigationBarArea.translatesAutoresizingMaskIntoConstraints = false
         backButton.translatesAutoresizingMaskIntoConstraints = false
         addDone.translatesAutoresizingMaskIntoConstraints = false
+        confirmButton.translatesAutoresizingMaskIntoConstraints = false
         
         addNewDoneButton.translatesAutoresizingMaskIntoConstraints = false
         plusBox.translatesAutoresizingMaskIntoConstraints = false
-        addNewDone.translatesAutoresizingMaskIntoConstraints = false
+        doneTextField.translatesAutoresizingMaskIntoConstraints = false
         
         iconArea.translatesAutoresizingMaskIntoConstraints = false
         
@@ -48,6 +50,7 @@ class AddDoneVC: UIViewController {
         addDone.textColor = .black
         addDone.font = UIFont(name: "AppleSDGothicNeo-Semibold", size: 20)
         addDone.textAlignment = .center
+        confirmButton.backgroundColor = .green
         
         addNewDoneButton.backgroundColor = .white
         addNewDoneButton.layer.cornerRadius = 10
@@ -59,9 +62,11 @@ class AddDoneVC: UIViewController {
         
         plusBox.backgroundColor = .gray
         
-        addNewDone.text = "새로운 한 일 추가하기"
-        addNewDone.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
-        addNewDone.textAlignment = .left
+        doneTextField.placeholder = "오늘은 어떤 일을 하셨나요?"
+        doneTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
+        doneTextField.textAlignment = .left
+        doneTextField.becomeFirstResponder()
+        
         
         iconArea.backgroundColor = .white
         iconArea.layer.cornerRadius = 10
@@ -80,6 +85,11 @@ class AddDoneVC: UIViewController {
             addDone.centerXAnchor.constraint(equalTo: navigationBarArea.centerXAnchor),
             addDone.centerYAnchor.constraint(equalTo: navigationBarArea.centerYAnchor),
             
+            confirmButton.centerYAnchor.constraint(equalTo: navigationBarArea.centerYAnchor),
+            confirmButton.trailingAnchor.constraint(equalTo: navigationBarArea.trailingAnchor, constant: -10),
+            confirmButton.widthAnchor.constraint(equalToConstant: 40),
+            confirmButton.heightAnchor.constraint(equalToConstant: 40),
+            
             addNewDoneButton.topAnchor.constraint(equalTo: navigationBarArea.bottomAnchor, constant: 20),
             addNewDoneButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
             addNewDoneButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
@@ -90,8 +100,8 @@ class AddDoneVC: UIViewController {
             plusBox.heightAnchor.constraint(equalToConstant: 35),
             plusBox.leadingAnchor.constraint(equalTo: addNewDoneButton.leadingAnchor, constant: 20),
             
-            addNewDone.centerYAnchor.constraint(equalTo: addNewDoneButton.centerYAnchor),
-            addNewDone.leadingAnchor.constraint(equalTo: plusBox.trailingAnchor, constant: 20),
+            doneTextField.centerYAnchor.constraint(equalTo: addNewDoneButton.centerYAnchor),
+            doneTextField.leadingAnchor.constraint(equalTo: plusBox.trailingAnchor, constant: 20),
             
             iconArea.topAnchor.constraint(equalTo: addNewDoneButton.bottomAnchor, constant: 10),
             iconArea.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
@@ -115,7 +125,6 @@ class AddDoneVC: UIViewController {
             stackView.frame = CGRect(x: 7, y: 7 + 45 * i, width: Int(self.view.frame.width - 30.0 - 14.0), height: 180/4 - 14)
         }
         
-        print("iconArea sub : \(iconArea.subviews)")
         
     }
     
