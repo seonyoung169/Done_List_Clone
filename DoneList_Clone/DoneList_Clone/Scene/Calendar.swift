@@ -27,7 +27,8 @@ extension Date {
 }
 
 
-class CalendarVC: UIViewController {
+class CalendarVC : UIViewController{
+
     let calendar = Calendar(identifier: .gregorian)
     
     var calendarCollectionView : UICollectionView = {
@@ -54,11 +55,13 @@ class CalendarVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCalendar()
-        
-        calendarCollectionView.backgroundColor = .white
-        
+
+//        calendarCollectionView.backgroundColor = .white
+//        calendarCollectionView.dataSource = self
+//        calendarCollectionView.delegate = self
+
         self.view.addSubview(calendarCollectionView)
-        
+
         NSLayoutConstraint.activate([
             calendarCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             calendarCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
@@ -106,3 +109,14 @@ class CalendarVC: UIViewController {
     }
     
 }
+
+//extension CalendarVC : UICollectionViewDataSource, UICollectionViewDelegate {
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return numOfDaysInMonth[currentMonthIndex] + firstWeekDayOfMonth - 1
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+//}
