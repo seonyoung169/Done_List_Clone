@@ -17,11 +17,22 @@ class HomeVC: UIViewController {
     var doneNumber : UILabel = UILabel()
     var message : UILabel = UILabel()
     
+    var taskTableView : UITableView = UITableView()
+    
     var addDondButton : UIImageView = UIImageView()
+    
+    private var taskViewModel = HomeViewModel()
+    private var colorList = [UIColor.red, UIColor.green, UIColor.systemPink, UIColor.blue, UIColor.magenta]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
         
+        taskTableView.delegate = self
+        taskTableView.dataSource = self
+    }
+    
+    func configure() -> Void {
         clockButton.backgroundColor = .black
         dateButton.text = "2021.08.12▾"
         dateButton.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
@@ -39,6 +50,10 @@ class HomeVC: UIViewController {
         message.text = "오늘 한 일을 추가해보세요!"
         message.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
         message.textColor = .white
+        message.isHidden = true
+        
+        taskTableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellID)
+        taskTableView.backgroundColor = .clear
         
         addDondButton.backgroundColor = UIColor(red: 102/255, green: 192/255, blue: 245/255, alpha: 1)
         addDondButton.layer.cornerRadius = 50/2
@@ -50,12 +65,6 @@ class HomeVC: UIViewController {
         addDondButton.isUserInteractionEnabled = true
         addDondButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goSelctDone)))
         
-        configure()
-        
-        
-    }
-    
-    func configure() -> Void {
         navigationBarArea.translatesAutoresizingMaskIntoConstraints = false
         clockButton.translatesAutoresizingMaskIntoConstraints = false
         dateButton.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +73,7 @@ class HomeVC: UIViewController {
         todayDone.translatesAutoresizingMaskIntoConstraints = false
         doneNumber.translatesAutoresizingMaskIntoConstraints = false
         message.translatesAutoresizingMaskIntoConstraints = false
-        
+        taskTableView.translatesAutoresizingMaskIntoConstraints = false
         addDondButton.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(navigationBarArea)
@@ -95,6 +104,7 @@ class HomeVC: UIViewController {
         self.view.addSubview(todayDone)
         self.view.addSubview(doneNumber)
         self.view.addSubview(message)
+        self.view.addSubview(taskTableView)
         self.view.addSubview(addDondButton)
         
         NSLayoutConstraint.activate([
@@ -107,11 +117,15 @@ class HomeVC: UIViewController {
             message.centerXAnchor.constraint(equalTo: navigationBarArea.centerXAnchor),
             message.topAnchor.constraint(equalTo: todayDone.bottomAnchor, constant: 80),
             
+            taskTableView.topAnchor.constraint(equalTo: doneNumber.bottomAnchor, constant: 30),
+            taskTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            taskTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            taskTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            
             addDondButton.widthAnchor.constraint(equalToConstant: 50),
             addDondButton.heightAnchor.constraint(equalToConstant: 50),
             addDondButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15),
             addDondButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
-            
         ])
     }
     
@@ -127,3 +141,23 @@ class HomeVC: UIViewController {
     }
 }
 
+extension HomeVC : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        taskViewModel.taskData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = taskTableView.dequeueReusableCell(withIdentifier: TaskCell.cellID, for: indexPath) as? TaskCell else { return TaskCell() }
+        
+        cell.icon.backgroundColor = colorList[taskViewModel.taskData[indexPath.row].icon-1]
+        cell.name.text = taskViewModel.taskData[indexPath.row].name
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    
+}
