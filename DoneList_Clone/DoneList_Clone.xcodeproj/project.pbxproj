@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A958EF5D26CFD11D00CEEBD3 /* RecentDoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A958EF5C26CFD11D00CEEBD3 /* RecentDoneCell.swift */; };
 		A958EF5F26D0F57200CEEBD3 /* AddDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A958EF5E26D0F57200CEEBD3 /* AddDone.swift */; };
+		A958EF6126D124E400CEEBD3 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A958EF6026D124E400CEEBD3 /* Calendar.swift */; };
 		A97E852126CA4E0D003F5F79 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E852026CA4E0D003F5F79 /* Report.swift */; };
 		A9B01FC126C526C300A9982A /* AppleSDGothicNeoH.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B01FBC26C526C300A9982A /* AppleSDGothicNeoH.ttf */; };
 		A9B01FC226C526C300A9982A /* AppleSDGothicNeoH.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B01FBC26C526C300A9982A /* AppleSDGothicNeoH.ttf */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		A958EF5C26CFD11D00CEEBD3 /* RecentDoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDoneCell.swift; sourceTree = "<group>"; };
 		A958EF5E26D0F57200CEEBD3 /* AddDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDone.swift; sourceTree = "<group>"; };
+		A958EF6026D124E400CEEBD3 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		A97E852026CA4E0D003F5F79 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		A9B01FBC26C526C300A9982A /* AppleSDGothicNeoH.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoH.ttf; path = "../../../../Downloads/Apple+산돌고딕+Neo/AppleSDGothicNeoH.ttf"; sourceTree = "<group>"; };
 		A9B01FBD26C526C300A9982A /* AppleSDGothicNeoEB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoEB.ttf; path = "../../../../Downloads/Apple+산돌고딕+Neo/AppleSDGothicNeoEB.ttf"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				A97E852026CA4E0D003F5F79 /* Report.swift */,
 				A9F580EA26CB9CCF00307A43 /* SelectDone.swift */,
 				A958EF5E26D0F57200CEEBD3 /* AddDone.swift */,
+				A958EF6026D124E400CEEBD3 /* Calendar.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A958EF6126D124E400CEEBD3 /* Calendar.swift in Sources */,
 				A9B01FD226C52AC200A9982A /* UIFont.swift in Sources */,
 				A9F580E926CB95B300307A43 /* DayRecord.swift in Sources */,
 				A97E852126CA4E0D003F5F79 /* Report.swift in Sources */,
@@ -537,6 +541,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F9AS3BMR4C;
 				INFOPLIST_FILE = DoneList_Clone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -555,6 +560,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F9AS3BMR4C;
 				INFOPLIST_FILE = DoneList_Clone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
