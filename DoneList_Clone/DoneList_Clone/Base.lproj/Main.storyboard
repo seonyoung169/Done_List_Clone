@@ -12,7 +12,7 @@
         <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeVC" customModule="DoneList_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="HomeVC" storyboardIdentifier="HomeVC" title="HomeVC" id="BYZ-38-t0r" customClass="HomeVC" customModule="DoneList_Clone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,23 +84,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8F-jP-qKA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1006" y="-632"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ezb-qu-Gd6">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="xmC-Vx-hUw" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LXP-7Z-AY6">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="a2D-UO-zze"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jjy-Zi-CRM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="95.652173913043484" y="77.678571428571431"/>
         </scene>
     </scenes>
     <resources>
