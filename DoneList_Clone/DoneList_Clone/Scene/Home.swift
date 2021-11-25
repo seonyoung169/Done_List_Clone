@@ -27,6 +27,7 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        setGesture()
         
         taskTableView.delegate = self
         taskTableView.dataSource = self
@@ -129,6 +130,21 @@ class HomeVC: UIViewController {
         ])
     }
     
+    func setGesture() {
+        clockButton.isUserInteractionEnabled = true
+        clockButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(moveToReport)))
+    }
+    
+    @objc func moveToReport(){
+        print("tap")
+        guard let report_vc = self.storyboard?.instantiateViewController(withIdentifier: "ReportVC") as? ReportVC else { return }
+        
+        print("report_vc : \(report_vc)")
+        print("push")
+        
+        print("navigation controller : \(self.navigationController)")
+        self.navigationController?.pushViewController(report_vc, animated: true)
+    }
 
     @objc func goSelctDone() {
         print("goSelectDone")
