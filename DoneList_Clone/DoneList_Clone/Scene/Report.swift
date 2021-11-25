@@ -44,6 +44,8 @@ class ReportVC : UIViewController {
     var average = UILabel()
     var averageCount = UILabel()
     
+    private var reportViewModel = ReportViewModel()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,8 +147,9 @@ class ReportVC : UIViewController {
         weekTotalCount.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 27)
         weekTotalCount.textAlignment = .center
         
-        for comp in dayComponents {
-            graphStackView.addArrangedSubview(comp)
+        for i in 0...6 {
+            graphStackView.addArrangedSubview(dayComponents[i])
+            dayComponents[i].setDateDoneData(reportViewModel.weekDoneData[i])
         }
         graphStackView.spacing = 2
         graphStackView.axis = .horizontal
@@ -157,7 +160,7 @@ class ReportVC : UIViewController {
         day.text = "기록 일수"
         day.textAlignment = .left
         day.font = UIFont(name: "AppleSDGothicNeo-Semibold", size: 18)
-        dayCount.text = "4 일"
+        dayCount.text = "\(reportViewModel.recordedDay) 일"
         dayCount.textAlignment = .right
         dayCount.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
 
@@ -165,7 +168,7 @@ class ReportVC : UIViewController {
         total.text = "전체 총합"
         total.textAlignment = .left
         total.font = UIFont(name: "AppleSDGothicNeo-Semibold", size: 18)
-        totalCount.text = "6 개"
+        totalCount.text = "\(reportViewModel.doneSum) 개"
         totalCount.textAlignment = .right
         totalCount.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
         
@@ -173,7 +176,7 @@ class ReportVC : UIViewController {
         average.text = "전체 평균"
         average.textAlignment = .left
         average.font = UIFont(name: "AppleSDGothicNeo-Semibold", size: 18)
-        averageCount.text = "1.5 개"
+        averageCount.text = "\(reportViewModel.doneAverage) 개"
         averageCount.textAlignment = .right
         averageCount.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
         

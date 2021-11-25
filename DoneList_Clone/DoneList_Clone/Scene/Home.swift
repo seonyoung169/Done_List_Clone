@@ -136,23 +136,12 @@ class HomeVC: UIViewController {
     }
     
     @objc func moveToReport(){
-        print("tap")
         guard let report_vc = self.storyboard?.instantiateViewController(withIdentifier: "ReportVC") as? ReportVC else { return }
-        
-        print("report_vc : \(report_vc)")
-        print("push")
-        
-        print("navigation controller : \(self.navigationController)")
         self.navigationController?.pushViewController(report_vc, animated: true)
     }
 
     @objc func goSelctDone() {
-        print("goSelectDone")
         guard let vc = self.storyboard?.instantiateViewController(identifier: "SelectDoneVC") else { return }
-        print("select done vc = \(vc)")
-        print("navi : \(self.navigationController)")
-        
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
