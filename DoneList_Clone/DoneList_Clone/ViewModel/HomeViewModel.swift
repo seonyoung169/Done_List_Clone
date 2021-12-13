@@ -8,8 +8,8 @@
 import Foundation
 
 class HomeViewModel {
-    let taskData : [Task]
-    let taskModel = TaskModel()
+    var taskData : [Task]
+    var taskModel = TaskModel()
     
     init(){
         taskData = taskModel.getTaskData()

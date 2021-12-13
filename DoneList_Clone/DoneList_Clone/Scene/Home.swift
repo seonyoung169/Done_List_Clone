@@ -31,6 +31,9 @@ class HomeVC: UIViewController {
         
         taskTableView.delegate = self
         taskTableView.dataSource = self
+        taskTableView.dragInteractionEnabled = true
+        taskTableView.dragDelegate = self
+        taskTableView.dropDelegate = self
     }
     
     func configure() -> Void {
@@ -44,7 +47,7 @@ class HomeVC: UIViewController {
         todayDone.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 25)
         todayDone.textColor = .white
         
-        doneNumber.text = "0"
+        doneNumber.text = "\(taskViewModel.taskData.count)"
         doneNumber.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 45)
         doneNumber.textColor = .white
         
@@ -119,8 +122,8 @@ class HomeVC: UIViewController {
             message.topAnchor.constraint(equalTo: todayDone.bottomAnchor, constant: 80),
             
             taskTableView.topAnchor.constraint(equalTo: doneNumber.bottomAnchor, constant: 30),
-            taskTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            taskTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            taskTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            taskTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
             taskTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             
             addDondButton.widthAnchor.constraint(equalToConstant: 50),
@@ -139,7 +142,7 @@ class HomeVC: UIViewController {
         guard let report_vc = self.storyboard?.instantiateViewController(withIdentifier: "ReportVC") as? ReportVC else { return }
         self.navigationController?.pushViewController(report_vc, animated: true)
     }
-
+    
     @objc func goSelctDone() {
         guard let vc = self.storyboard?.instantiateViewController(identifier: "SelectDoneVC") else { return }
         self.navigationController?.pushViewController(vc, animated: true)
@@ -161,7 +164,28 @@ extension HomeVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let moveCell = self.taskViewModel.taskData[sourceIndexPath.row]
+        self.taskViewModel.taskData.remove(at: sourceIndexPath.row)
+        self.taskViewModel.taskData.insert(moveCell, at: destinationIndexPath.row)
+    }
+}
+
+extension HomeVC : UITableViewDragDelegate, UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return [UIDragItem(itemProvider: NSItemProvider())]
+    }
+    
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) { }
+    
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        if session.localDragSession != nil {
+            return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+        }
+        return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
     }
     
     
